@@ -1,5 +1,5 @@
 # Docker-Deep-dive-BigPicture
-Big picture on Docker by Nigel (summery)
+Big picture on Docker by Nigel (summary)
 
 ## Big picture of Docker technology
 
