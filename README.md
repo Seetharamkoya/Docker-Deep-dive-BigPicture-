@@ -3,7 +3,7 @@ Big picture on Docker by Nigel (summery)
 
 ## Big picture of Docker technology
 
-Docker is a microservices tool used to create, manage and Orchestrate containers.
+Docker is an light weight microservices tool used to create, manage and Orchestrate containers.
 
 Docker can run in linux and windows and there are three things to be aware of Docker technology.
 
