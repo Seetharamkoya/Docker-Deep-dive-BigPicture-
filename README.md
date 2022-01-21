@@ -69,3 +69,7 @@ By default, installation can be done on the same host and configure them to comm
 ![image](https://user-images.githubusercontent.com/38424194/150536627-01e823f5-9b8e-4036-944c-50c8fe2fb775.png)
 
 But, for production environment this insecure configuration not be suitable instead use TLS secured. By allowing the communication with the trusted certificate authority(CA).
+
+### SELF-SIGNED CERTS and CERTIFICATE AUTHORITY (CA)
+
+
