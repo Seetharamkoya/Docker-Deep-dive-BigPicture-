@@ -42,3 +42,17 @@ Docker client communities using the REST API, Over the unix scokets or a network
 
 ![image](https://user-images.githubusercontent.com/38424194/150528287-b909da1d-e594-4366-aa71-ea83dcff7bd8.png)
 
+> docker container run --name container image (names)
+1. When we type command into Docker CLI, the docker client converts them into the appropriate API playload and post them to the API end point exposed by the Docker dameon.
+2. The Docker Daemon receive instruction from the API endpoint  can be exposed to a local SOCKET or LOCAL NETWORK. on linux \var\run\docker.sock and on windows \pipe\docker-engine.
+3. Intially, daemon has no code to create container. Once it receives command it communicates with containered via CRUD-style API over gRPC.
+4. then **containered** will conert the image onto **OCI bundle** and instruct the **runc** to create a docker container using that image.
+5. **runc** interface with os kernel to pull necessary things to create a container and the container process started as child process of runc, and will exit once started.
+
+## How to implement on linux
+• dockerd (the Docker daemon)
+• docker-containerd (containerd)
+• docker-containerd-shim (shim)
+• docker-runc (runc)/
+
+We can check the all this process using PS command on docker host.
