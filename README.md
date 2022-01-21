@@ -44,6 +44,23 @@ Now, you can check the version
 - then **containered** will conert the image onto **OCI bundle** and instruct the **runc** to create a docker container using that image.
 - **runc** interface with os kernel to pull necessary things to create a container and the container process started as child process of runc, and will exit once started.
 
+### Docker Images
+A Doer image is a unit of paaging that contains everything required for an application to run. is includes:application code, application dependencies, and OS constructs. 
+- images are like stopped containers and considered as build-time constructs where as containers are run time constructs.
 
+![image](https://user-images.githubusercontent.com/38424194/150593063-44c42c4b-3b69-4fcf-a344-225ca1ab5281.png)
 
+-  we can use single image to run multiple containers and once the container start running we can't delete the image unlessss it been stooped or destroyed.
+
+## Commands
+```sudo docker --version ``` \
+checks the docker installation 
+
+```systemctl status check```     
+weather docker is active (running)
+
+```docker build -t ```  \
+Build images from the docker file
+
+```docker image ls```
 
