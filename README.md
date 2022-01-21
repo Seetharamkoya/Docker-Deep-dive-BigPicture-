@@ -22,3 +22,23 @@ The highlevel runtime is called containerd does a lot more than runc in the life
 Docker Engine is a high level component sits on the Contained and perform high level tasks such as exposing the Docker remote API, managing volumes and Networking...
 
 Docker also support in the managing the clusters of nodes runnig in the Docker. These clusters are called swarms/Docker-swarm.
+
+## Installating Docker on ubuntu
+
+> sudo apt-get update
+
+> sudo apt-get install docker.io
+
+Now, you can check the version
+
+> sudo docker --version
+
+## Docker Engine
+
+![image](https://user-images.githubusercontent.com/38424194/150494049-92c2144f-cbb3-4433-a844-bd41daee2eed.png)
+
+Docker uses a client-server architecture. The Docker client talks to the Docker daemon, which does heavy lifting of the building, running, and distrubting the docker containers. Both  can run on the same system or Docker client connect to a remote Docker daemon.
+Docker client communities using the REST API, Over the unix scokets or a network interface. Docker compose is another docker client thats let you work with applications consisting of set of containers.
+
+![image](https://user-images.githubusercontent.com/38424194/150528287-b909da1d-e594-4366-aa71-ea83dcff7bd8.png)
+
