@@ -67,7 +67,7 @@ But, for production environment this insecure configuration not be suitable inst
 openssl genrsa -aes256 -out ca-key.pem 4096
 
 ```
-we will have a new file in our current working directory called as ca-key.pem. which is private.
+we will have a new file in our current working directory called as ca-key.pem is private.
 
 2. Use the CA’s private key to generate a public key (certificate).
 ```
@@ -136,4 +136,11 @@ chmod 0400 ca-key.pem client-key.pem daemon-key.pem
 ```
 chmod -v 0444 ca.pem client-cert.pem daemon-cert.pem
 ````
+#### Distribution of keys to hidden directory .docker to enable with chmod 777
+
+### Configure Docker for TLS
+Docker has 3 TLS nodes:
+- daemon mode
+- client mode
+Daemon mode forces the daemon only to allow connections from clients with a valid certificate. Client mode tells the client only to connect with daemons that have a valid certificate.
 
