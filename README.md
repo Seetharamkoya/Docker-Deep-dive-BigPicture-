@@ -56,3 +56,16 @@ Docker client communities using the REST API, Over the unix scokets or a network
 • docker-runc (runc)/
 
 We can check the all this process using PS command on docker host.
+
+## Securing the Client and daemon communication over network.
+
+In the client-server model
+> the client components implement the CLI
+> 
+> The server (daemon) component implement the functionality, including the public-fascing REST API.
+
+By default, installation can be done on the same host and configure them to communicate over a local IPC socket on port 2375/tcp (HTTP).
+
+![image](https://user-images.githubusercontent.com/38424194/150536627-01e823f5-9b8e-4036-944c-50c8fe2fb775.png)
+
+But, for production environment this insecure configuration not be suitable instead use TLS secured. By allowing the communication with the trusted certificate authority(CA).
