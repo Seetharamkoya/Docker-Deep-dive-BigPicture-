@@ -35,11 +35,6 @@ Now, you can check the version
 
 ## Docker Engine
 
-![image](https://user-images.githubusercontent.com/38424194/150494049-92c2144f-cbb3-4433-a844-bd41daee2eed.png)
-
-Docker uses a client-server architecture. The Docker client talks to the Docker daemon, which does heavy lifting of the building, running, and distrubting the docker containers. Both  can run on the same system or Docker client connect to a remote Docker daemon.
-Docker client communities using the REST API, Over the unix scokets or a network interface. Docker compose is another docker client thats let you work with applications consisting of set of containers.
-
 ![image](https://user-images.githubusercontent.com/38424194/150528287-b909da1d-e594-4366-aa71-ea83dcff7bd8.png)
 
 > docker container run --name container image (names)
@@ -54,7 +49,7 @@ Docker client communities using the REST API, Over the unix scokets or a network
 
 In the client-server model
 > the client components implement the CLI
-> 
+
 > The server (daemon) component implement the functionality, including the public-fascing REST API.
 
 By default, installation can be done on the same host and configure them to communicate over a local IPC socket on port 2375/tcp (HTTP).
@@ -66,6 +61,8 @@ But, for production environment this insecure configuration not be suitable inst
 ### SELF-SIGNED CERTS and CERTIFICATE AUTHORITY (CA).
 
 1. Create a new private key for the CA
+
+
 ```
 openssl genrsa -aes256 -out ca-key.pem 4096
 
@@ -86,34 +83,57 @@ the identity of the CA. At this point, the CA is ready to use.
 ``
 openssl genrsa -out daemon-key.pem 4096
 <Snip>
-
 ```
+
 Create a certificate signing request (CSR) for the CA to create and sign a certificate for the daemon. Be
 sure to use the correct DNS name for your daemon node. e example uses node3.
+
 ```
 openssl req -subj "/CN=node3" \
 -sha256 -new -key daemon-key.pem -out daemon.csr
 ```
+
 we will have 4 keys in our working directory. This one we called daemon.csr.
 
-3. Add required aributes to the certificate.
+3. Add required atributes to the certificate.
 
-this step creates a file that tells the CA to add a couple of extended aributes to the daemon’s certificate
-when it signs it. ese add the daemon’s DNS name and IP address, as well as configure the certificate to
-be valid for server authentication.
-Create a new file called extfile.cnf with the following values. e example uses the DNS name and IP
-of the daemon node in the lab from Figure 5.6. e values in your environment might be different.
+- DNS name and IP address, as well as configure the certificate to be valid for server authentication
+- Create a new file called extfile.cnf
 
+```
 subjectAltName = DNS:node3,IP:10.0.0.12
 extendedKeyUsage = serverAuth
+```
 
 4. Generate the certificate.
-this step uses the CSR file, CA keys, and the extfile.cnf file to sign and configure the daemon’s
+
+This step uses the CSR file, CA keys, and the extfile.cnf file to sign and configure the daemon’s
 certificate. It will output the daemon’s public key (certificate) as a new file called daemon-cert.pem
-$ openssl x509 -req -days 730 -sha256 \
+
+```
+openssl x509 -req -days 730 -sha256 \
 -in daemon.csr -CA ca.pem -CAkey ca-key.pem \
 -CAcreateserial -out daemon-cert.pem -extfile extfile.cnf
+```
 
 At this point, you have a working CA, as well as a key-pair for node3 that can be used to secure the Docker
 daemon.
+
 Delete the CSR and extfile.cnf before moving on.
+
+```
+rm daemon.csr extfile.cnf
+```
+### Create a key-pair for the client
+Repeat the same steps for the clent to generate the ket and certificate.
+
+At this point we have 7 files and give the read only acess.
+
+````
+chmod 0400 ca-key.pem client-key.pem daemon-key.pem
+````
+
+```
+chmod -v 0444 ca.pem client-cert.pem daemon-cert.pem
+````
+
