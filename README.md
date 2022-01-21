@@ -139,8 +139,8 @@ chmod -v 0444 ca.pem client-cert.pem daemon-cert.pem
 #### Distribution of keys to hidden directory .docker to enable with chmod 777
 
 ### Configure Docker for TLS
-Docker has 3 TLS nodes:
+Docker has 2 TLS nodes:
 - daemon mode
-- client mode
+- client mode /
 Daemon mode forces the daemon only to allow connections from clients with a valid certificate. Client mode tells the client only to connect with daemons that have a valid certificate.
 
